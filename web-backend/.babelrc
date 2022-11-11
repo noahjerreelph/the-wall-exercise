@@ -1,0 +1,14 @@
+{
+    "passPerPreset": true,
+    "plugins": [
+        [
+	        "@babel/plugin-proposal-class-properties",
+	        {
+	        	"regenerator": true
+	        }
+        ]
+    ],
+    "presets": [
+      "@babel/preset-env"
+    ]
+}

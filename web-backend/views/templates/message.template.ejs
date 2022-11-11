@@ -1,0 +1,15 @@
+<div class="content">
+    <h3>Welcome <%= data?.user_data?.first_name || "Guest" %>,</h3>
+
+    <div class="update-form"> 
+        <h4>Update <%= data.message_type === "posts" ? "Post" : "Comment" %></h4>
+        <form id="update-message" action="/api/<%= data.message_type %>/<%= data.message.id %>/update" method="POST" is-processing="0">
+            <div>
+                <p>
+                    <textarea name="message" placeholder="Update message!"><%= data.message_type === "posts" ? data.message.content : data.message.message %></textarea>
+                    <button type="submit">Update</button>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>

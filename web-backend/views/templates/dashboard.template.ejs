@@ -1,0 +1,23 @@
+<div class="content">
+    <h3>Welcome <%= data?.user_data?.first_name || "Guest" %>, <a href="/api/users/logout">logout</a></h3>
+
+    <div class="post-form"> 
+        <form id="create-post" action="/api/posts/create" method="POST" is-processing="0">
+            <div>
+                <label>Post:</label>
+                <p>
+                    <textarea name="content" placeholder="Create your post!"></textarea>
+                    <button type="submit">Create Post</button>
+                </p>
+            </div>
+        </form>
+    </div>
+    <div class="posts">
+<%  if(data?.posts.length){
+        for(let index in (data?.posts || [])){
+            post = data?.posts[index]; %>
+            <%- include("post.template.ejs", {post, user_id: data.user_data.id}) %>
+<%      }
+    }%>
+    </div>
+</div>

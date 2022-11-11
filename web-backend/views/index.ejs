@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Village88 Wall</title>
+
+    <script src="/assets/javascript/vendor/jquery-3.6.1.min.js" type="text/javascript"></script>
+    <% 
+        for(let index in assets?.javascripts){ %>
+            <script src="/assets/javascript/<%= assets.javascripts[index] %>" type="text/javascript"></script>
+    <% } %>
+</head>
+<body>
+    <div>
+        <h1>Village88 Wall Project</h1>
+        <div class="content">
+        <% if(template){ %>
+            <%- include(`templates/${template}.template.ejs`) %>
+        <% } %>
+        </div>
+    </div>
+</body>
+</html>

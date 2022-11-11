@@ -1,0 +1,41 @@
+<div class="left">
+    <h3>Registration</h3>
+    <form id="user-registration" action="/api/users/create" method="POST" is-processing="0">
+        <p>
+            <label>First Name</label>
+            <input type="text" name="first_name" value="Noah Jerreel">
+        </p>
+        <p>
+            <label>Last Name</label>
+            <input type="text" name="last_name" value="Guillen">
+        </p>
+        <p>
+            <label>Email Address</label>
+            <input type="text" name="email_address" value="noahjerreel@gmail.com">
+        </p>
+        <p>
+            <label>Password</label>
+            <input type="password" name="password" value="2019password">
+        </p>
+        <p>
+            <label>Confirm Password</label>
+            <input type="password" name="confirm_password" value="2019password">
+        </p>
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+<div class="right">
+    <h3>Log In</h3>
+    <form id="user-login" action="/api/users/login" method="POST" is-processing="0">
+        <p>
+            <label>Email Address</label>
+            <input type="text" name="email_address" value="noahjerreel@gmail.com">
+        </p>
+        <p>
+            <label>Password</label>
+            <input type="password" name="password" value="2019password">
+        </p>
+        <button type="submit">Login</button>
+    </form>
+</div>
