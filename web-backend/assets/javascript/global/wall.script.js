@@ -39,27 +39,3 @@ function submitForm(e){
 
     return false;
 }
-
-function deleteMessage(button, message_type){
-    if(parseInt(button.attr("is-processing")) === 0){
-        let is_delete = confirm("Are you sure you want to delete the selected message?");
-
-        if(is_delete){
-            let message_id = button.attr((message_type  === "posts" ? "post-id" : "comment-id"));
-            let delete_url = `/api/${message_type}/${message_id}/delete`;
-            
-            button.attr("is-processing", 1);
-
-            $.post(delete_url, ({status, result, error, message}) => {
-                if(status){
-                    button.parents((message_type  === "posts" ? "div.user-post" : "div.user-comment")).remove();
-                }
-                else{
-                    alert(message || error)
-                }
-    
-                button.attr("is-processing", 0);
-            });
-        }
-    }
-}

@@ -12,6 +12,12 @@ class GlobalHelper{
         req.session.village_user = user_data;
         req.session.save();
     }
+
+    isUserLoggedIn = (req) => {
+        if(!req.session?.villager_user?.id){
+            throw Error ("You need permission to access this page.")
+        }
+    }
 }
 
 /* automatically initialize Global Helper */

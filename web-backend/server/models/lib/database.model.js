@@ -54,6 +54,8 @@ class DatabaseModel {
     startTransaction = async () => {
         return new Promise((resolve, reject) => {
             try{
+                let dbConnection = this;
+
                 this.database.connection.getConnection(async(error, connection) => {
                     if(!error){
                         connection.beginTransaction(async(transaction_error)=>{
@@ -61,6 +63,7 @@ class DatabaseModel {
                                 reject(transaction_error);
                             }
                             else{
+                                dbConnection.activeTransaction = connection;
                                 resolve(connection);
                             }
                         });

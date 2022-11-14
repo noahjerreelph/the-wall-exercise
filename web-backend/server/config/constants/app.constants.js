@@ -20,16 +20,6 @@ try {
             users: {
                 create: ["first_name", "last_name", "email_address", "password", "confirm_password"],
                 login: ["email_address", "password"]
-            },
-            posts: {
-                create: ["content"],
-                update: ["id", "content"],
-                delete: ["id"]
-            },
-            comments: {
-                create: ["post_id", "message"],
-                update: ["id", "message"],
-                delete: ["id"]
             }
         },
         validations: {
