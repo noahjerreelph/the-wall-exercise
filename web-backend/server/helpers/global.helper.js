@@ -14,7 +14,7 @@ class GlobalHelper{
     }
 
     isUserLoggedIn = (req) => {
-        if(!req.session?.villager_user?.id){
+        if(!req.session?.village_user?.id){
             throw Error ("You need permission to access this page.")
         }
     }

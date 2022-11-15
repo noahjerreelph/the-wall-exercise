@@ -13,4 +13,10 @@ ViewRoutes.get("/dashboard", (req, res) => {
     viewController.visitDashboard();
 });
 
+ViewRoutes.get("/messages/:post_id/:comment_id?", (req, res) => {
+    let viewController = new ViewsController(req, res);
+    let {post_id, comment_id} = req.params;
+    viewController.viewMessage(post_id, comment_id);
+});
+
 export default ViewRoutes;

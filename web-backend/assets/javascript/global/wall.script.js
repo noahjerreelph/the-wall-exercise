@@ -13,19 +13,15 @@ function submitForm(e){
             }
 
             if(status){
+               window.location.reload();
+            }
+            else{
                 if(result?.redirect_url){
                     window.location.href = result.redirect_url;
                 }
-                else if(result?.html){
-                    if(form.attr("id") === "create-post"){
-                        form.after($(result.html));
-                    }else{
-                        form.before($(result.html));
-                    }
+                else if(message || error){
+                    form.prepend(`<span class="error">${message || error}</span>`);
                 }
-            }
-            else{
-                form.prepend(`<span class="error">${message || error}</span>`);
             }
 
             form.attr("is-processing", 0);
@@ -35,6 +31,27 @@ function submitForm(e){
     else{
         alert("The Form is Busy!");
     }
+    
+
+    return false;
+}
+
+function deleteForm(e){
+    e.preventDefault();
+
+    let a_link = $(this);
+    let message_type = $(a_link).hasClass("delete-post") ? "posts" : "comments";
+    let id = $(a_link).attr("message-id");
+
+
+    $.post("/api/messages/delete", {id, message_type}, ({status, result, error, message}) => {
+        if(status){
+            window.location.reload();
+        }
+        else{
+            alert(message || error);
+        }
+    });
     
 
     return false;

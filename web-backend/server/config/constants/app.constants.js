@@ -20,6 +20,11 @@ try {
             users: {
                 create: ["first_name", "last_name", "email_address", "password", "confirm_password"],
                 login: ["email_address", "password"]
+            },
+            messages: {
+                create: ["content", "message_type"],
+                update: ["id", "content", "message_type"],
+                delete: ["id", "message_type"]
             }
         },
         validations: {
