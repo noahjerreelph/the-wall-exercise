@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  database:
+    image: mysql
+    volumes:
+      - thewall_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: thewallroot88
+      MYSQL_DATABASE: village88_wall
+      MYSQL_USER: user88
+      MYSQL_PASSWORD: thewalluser88
+    ports:
+      - 3307:3306  
+  
+  wall:
+      depends_on:
+        - database
+      build: ./ 
+      image: village88_wall:latest 
+      command:
+        - npm
+        - run
+        - debug
+      volumes:
+        - ./web-backend:/var/www/the-wall
+      ports:
+        - 1500:1500 
+        - 9229:9229
+
+volumes:
+    thewall_data: {}
