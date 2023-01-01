@@ -2,4 +2,61 @@
     <h3>Welcome <%= data?.user_details?.first_name || "Guest" %>, <a href="/api/users/logout">logout</a></h3>
 </div>
 <div class="content">
+    <h5>Create Your Post:</h5>
+    <form id="create-post" action="/api/messages/create" method="post" is-processing="0">
+        <p>
+            <textarea col="50" row="20" name="content"></textarea>
+            <input type="hidden" name="message_type" value="posts" />
+        </p>
+        <p>
+            <input type="submit" value="Create"/>
+        </p>
+    </form>
+    <div id="posts">
+<%  for(let index in (data?.posts || [])) {
+        let post = data.posts[index] %>
+
+        <div class="post">
+            <h5><%= post.content %></h5>
+            <p><small><%= post.author %> | <%= post.created_at %> |
+        <% if(post.user_id === data?.user_details?.id){ %>
+                <a href="/messages/<%= post.post_id %>" class="edit-post">Edit</a>
+                <% if(post.is_deletable == 1) { %> 
+                        | <a href="#"  class="delete-post" message-id="<%= post.post_id %>">Delete</a></small></p>
+        <%      }
+            } %>
+
+            <ul class="comments">
+        <% 
+            let comments = post.post_comments ? post.post_comments : [];
+            
+            for(let idx in comments){
+                let comment = comments[idx]; %>
+
+                <li class="comment">
+                    <h5><%= comment.content %></h5>
+                    <p><small><%= comment.author %> | <%= comment.created_at %> |
+                    <% if(comment.user_id === data?.user_details?.id){ %>
+                            <a href="/messages/<%= post.post_id %>/<%= comment.comment_id %>" class="edit-comment">Edit</a>
+                            <% if(comment.is_deletable == 1) { %> 
+                                    | <a href="#" class="delete-comment" message-id="<%= comment.comment_id %>">Delete</a></small></p>
+                    <%      }
+                        } %>
+                </li>
+        <%  } %>
+            </ul>
+
+            <form class="create-comment" action="/api/messages/create" method="post" is-processing="0">
+                <p>
+                    <textarea col="50" row="20" name="content"></textarea>
+                    <input type="hidden" name="post_id" value="<%= post.post_id %>" />
+                    <input type="hidden" name="message_type" value="comments" />
+                </p>
+                <p>
+                    <input type="submit" value="Comment"/>
+                </p>
+            </form>
+        </div>
+<% } %>
+    </div>
 </div>

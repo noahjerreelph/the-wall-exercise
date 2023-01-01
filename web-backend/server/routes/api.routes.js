@@ -1,9 +1,11 @@
 import {API_SETTINGS} from "../config/constants/app.constants";
+import MessageRoutes from "./apis/message.routes";
 import UserRoutes from "./apis/user.routes";
 
 function ApiRoutes(App){
     const api_registers = {
-        users: UserRoutes
+        users: UserRoutes,
+        messages: MessageRoutes
     }
 
     for(let [url] of Object.entries(API_SETTINGS.urls)){

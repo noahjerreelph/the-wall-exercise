@@ -1,0 +1,17 @@
+<div class="header">
+    <h3>Welcome <%= data?.user_details?.first_name || "Guest" %>, <a href="/api/users/logout">logout</a></h3>
+</div>
+<div class="content">
+    <h5>Update Your <%= (data?.message_type === "posts" ? "Post" : "Comment") %>:</h5>
+    <form id="update-message" action="/api/messages/update" method="post" is-processing="0">
+        <p>
+            <textarea col="50" row="20" name="content"><%= data?.message.content %></textarea>
+            <input type="hidden" name="message_type" value="<%= data?.message_type %>" />
+            <input type="hidden" name="id" value="<%= data?.message.id %>" />
+        </p>
+        <p>
+            <a href="/dashboard">Back</a>
+            <input type="submit" value="Update"/>
+        </p>
+    </form>
+</div>
